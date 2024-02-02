@@ -17,7 +17,10 @@ app.get("/", (req, res) => {
 app.use(cors());
 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", "http://localhost:5173");
+  res.setHeader(
+    "Access-Control-Allow-Origin",
+    "https://paperhubmnnit.netlify.app/"
+  );
   res.header(
     "Access-Control-Allow-Methods",
     "GET, POST, PUT, PATCH, DELETE" // Include DELETE here
@@ -28,10 +31,10 @@ app.use((req, res, next) => {
   );
   next();
 });
-// app.use((req, res, next) => {
-//   res.header("Access-Control-Allow-Origin", "*");
-//   next();
-// });
+app.use((req, res, next) => {
+  res.header("Access-Control-Allow-Origin", "*");
+  next();
+});
 app.use(express.json());
 app.use("/images", express.static("images"));
 app.use("/api/v1/user", require("./routers/AddQuestion"));
