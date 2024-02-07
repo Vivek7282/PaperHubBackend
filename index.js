@@ -44,8 +44,9 @@ app.use("/api/v1/user", require("./routers/Login"));
 app.use("/api/v1/user", require("./routers/Register"));
 app.post("/api/v1/user/getUserData", authMiddleware, authController);
 app.use(express.static(path.join(__dirname, "./client/dist")));
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/dist/index.html"));
+app.get('*', function (req, res) {
+  const index = path.join(__dirname, 'dist', 'index.html');
+  res.sendFile(index);
 });
 app.listen(PORT, () => {
   console.log(`server is running at ${PORT}`);
